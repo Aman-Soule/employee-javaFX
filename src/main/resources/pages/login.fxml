@@ -11,4 +11,12 @@
             fx:controller="sn.iage.isi.employeejavafx.controllers.LoginController"
             prefHeight="400.0" prefWidth="600.0">
 
+    <children>
+        <Label text="Nom d'utilisateur" layoutX="50" layoutY="50"/>
+        <TextField fx:id="usernameField" layoutX="200" layoutY="50"/>
+        <Label text="Mot de passe" layoutX="50" layoutY="100"/>
+        <PasswordField fx:id="passwordField" layoutX="200" layoutY="100"/>
+        <Button text="Se connecter" layoutX="200" layoutY="150" onAction="#handleLogin"/>
+    </children>
+
 </AnchorPane>
