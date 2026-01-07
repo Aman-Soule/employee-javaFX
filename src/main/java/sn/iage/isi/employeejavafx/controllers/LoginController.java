@@ -1,9 +1,13 @@
 package sn.iage.isi.employeejavafx.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import sn.iage.isi.employeejavafx.utils.DBConnection;
 
 import java.sql.Connection;
@@ -33,6 +37,16 @@ public class LoginController {
             if (rs.next()) {
                 showAlert("Succès", "Connexion réussie !");
                 // Ici tu peux ouvrir une nouvelle fenêtre (dashboard)
+                // Charger le dashboard
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/dashboard.fxml"));
+                Parent root = loader.load();
+                DashboardController controller = loader.getController();
+                controller.setCurrentUser(username);
+
+                Stage stage = (Stage) usernameField.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Dashboard");
+                stage.show();
             } else {
                 showAlert("Erreur", "Nom d'utilisateur ou mot de passe incorrect.");
             }

@@ -10,4 +10,7 @@ module sn.iage.isi.employeejavafx {
 
     exports sn.iage.isi.employeejavafx.controllers;
     opens sn.iage.isi.employeejavafx.controllers to javafx.fxml;
+
+    exports sn.iage.isi.employeejavafx.models;
+    opens sn.iage.isi.employeejavafx.models to javafx.fxml;
 }

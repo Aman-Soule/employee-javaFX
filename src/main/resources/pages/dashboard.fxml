@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sn.iage.isi.employeejavafx.controllers.DashboardController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <top>
+        <Label fx:id="welcomeLabel" text="Bienvenue !" style="-fx-font-size: 18px; -fx-padding: 10;"/>
+    </top>
+    <center>
+        <TableView fx:id="userTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="usernameColumn" text="Nom d'utilisateur" prefWidth="150"/>
+                <TableColumn fx:id="passwordColumn" text="Mot de passe" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
