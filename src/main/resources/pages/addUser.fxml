@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sn.iage.isi.employeejavafx.controllers.AddController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+        <Label text="Ajouter un utilisateur" style="-fx-font-size: 16px;"/>
+        <TextField fx:id="usernameField" promptText="Nom d'utilisateur" maxWidth="300"/>
+        <PasswordField fx:id="passwordField" promptText="Mot de passe" maxWidth="300"/>
+        <Button text="Enregistrer" onAction="#handleSave" maxWidth="150"/>
+    </VBox>
+
+</AnchorPane>

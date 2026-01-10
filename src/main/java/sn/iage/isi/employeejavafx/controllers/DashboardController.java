@@ -1,10 +1,15 @@
 package sn.iage.isi.employeejavafx.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sn.iage.isi.employeejavafx.models.User;
 import sn.iage.isi.employeejavafx.utils.DBConnection;
 
@@ -33,10 +38,37 @@ public class DashboardController {
 
     private String currentUser;
 
+    @FXML
+    private Button addUserButton;
+
+    @FXML private Button reloadButton;
+
+    @FXML
+    private void handleReload() {
+        loadUsers(); // recharge la liste depuis la base }
+    }
     public void setCurrentUser(String username) {
         this.currentUser = username;
         welcomeLabel.setText("Bienvenue, " + username + " !");
         loadUsers();
+    }
+
+    @FXML
+    private void handleAddUser() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/addUser.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer le contrôleur si besoin
+            AddController addController = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter un utilisateur");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void loadUsers() {
