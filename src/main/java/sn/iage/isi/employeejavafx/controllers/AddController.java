@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import sn.iage.isi.employeejavafx.tools.Utils;
 import sn.iage.isi.employeejavafx.utils.DBConnection;
 
 import java.sql.Connection;
@@ -20,7 +21,7 @@ public class AddController {
     @FXML
     private void handleSave() {
         String username = usernameField.getText();
-        String password = passwordField.getText();
+        String password = Utils.hashPassword(passwordField.getText());
 
         if (username.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez remplir tous les champs !");

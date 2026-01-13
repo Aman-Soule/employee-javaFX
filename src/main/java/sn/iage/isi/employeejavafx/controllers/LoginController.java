@@ -23,7 +23,7 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private void handleLogin() {
+    private void login() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 

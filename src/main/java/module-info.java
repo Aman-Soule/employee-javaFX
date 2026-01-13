@@ -3,6 +3,7 @@ module sn.iage.isi.employeejavafx {
     requires javafx.fxml;
     requires java.sql;
     requires jdk.jdi;
+    requires jbcrypt;
 
 
     opens sn.iage.isi.employeejavafx to javafx.fxml;
