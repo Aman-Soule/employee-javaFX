@@ -5,8 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sn.iage.isi.employeejavafx.models.User;
+import sn.iage.isi.employeejavafx.services.UserService;
+import sn.iage.isi.employeejavafx.services.impl.UserServiceImpl;
 
 public class App extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent parent =  FXMLLoader.load(getClass().getResource("/pages/login.fxml"));
@@ -17,6 +21,12 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
+        User user = new User();
+        user.setUsername("youssou");
+        user.setPassword("1234");
+        userService.createUser(user);
+        launch();
         launch(args);
     }
 }

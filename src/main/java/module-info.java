@@ -4,6 +4,8 @@ module sn.iage.isi.employeejavafx {
     requires java.sql;
     requires jdk.jdi;
     requires jbcrypt;
+    requires static lombok;
+    requires TrayNotification;
 
 
     opens sn.iage.isi.employeejavafx to javafx.fxml;

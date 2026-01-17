@@ -11,7 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sn.iage.isi.employeejavafx.models.User;
-import sn.iage.isi.employeejavafx.utils.DBConnection;
+import sn.iage.isi.employeejavafx.config.DB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -73,15 +73,15 @@ public class DashboardController {
 
     private void loadUsers() {
         ObservableList<User> users = FXCollections.observableArrayList();
-        try (Connection conn = DBConnection.getConnection()) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-            while (rs.next()) {
-                users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("password")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try (Connection conn = DBConnection.getConnection()) {
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+//            while (rs.next()) {
+//                users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("password")));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
