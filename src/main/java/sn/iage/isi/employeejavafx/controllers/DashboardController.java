@@ -12,10 +12,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sn.iage.isi.employeejavafx.models.User;
 import sn.iage.isi.employeejavafx.config.DB;
+import sn.iage.isi.employeejavafx.services.impl.UserServiceImpl;
+import sn.iage.isi.employeejavafx.services.UserService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -72,22 +76,22 @@ public class DashboardController {
     }
 
     private void loadUsers() {
-        ObservableList<User> users = FXCollections.observableArrayList();
-//        try (Connection conn = DBConnection.getConnection()) {
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-//            while (rs.next()) {
-//                users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("password")));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        UserService userService = new UserServiceImpl();
+        // Récupérer tous les utilisateurs depuis ta méthode existante
+        List<User> userList = userService.getAllUsers();
 
+        // Convertir en ObservableList pour JavaFX
+        ObservableList<User> users = FXCollections.observableArrayList(userList);
+
+        // Associer les colonnes aux propriétés de la classe User
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 
+        // Charger les données dans le tableau
         userTable.setItems(users);
+
+
     }
 }
 

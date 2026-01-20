@@ -8,7 +8,7 @@ public class Utils {
         return BCrypt.hashpw(passwordTextPlain, BCrypt.gensalt());
     }
 
-    public static boolean checkPassword(String passwordTextPlain, String passwordHashed) {
-        return BCrypt.checkpw(passwordTextPlain, passwordHashed);
+    public static boolean checkPassword(String plainPassword, String hashedPassword) {
+        return BCrypt.checkpw(plainPassword, hashedPassword);
     }
 }

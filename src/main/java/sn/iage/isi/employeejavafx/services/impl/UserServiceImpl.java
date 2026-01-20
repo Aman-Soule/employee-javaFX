@@ -8,9 +8,12 @@ import sn.iage.isi.employeejavafx.tools.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private DB db = new DB();
+    private int ok;
     private ResultSet rs;
 
     @Override
@@ -51,4 +54,29 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+
+    @Override
+    public List<User> getAllUsers() {
+
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users";
+        try{
+            db.initPrepar(sql);
+            rs = db.executeSelect();
+            while (rs.next()){
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                users.add(user);
+            }
+            db.closeConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+
+
 }

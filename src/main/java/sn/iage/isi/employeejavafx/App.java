@@ -21,12 +21,12 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-        User user = new User();
-        user.setUsername("youssou");
-        user.setPassword("1234");
-        userService.createUser(user);
-        launch();
+//        UserService userService = new UserServiceImpl();
+//        User user = new User();
+//        user.setUsername("youssou");
+//        user.setPassword("1234");
+//        userService.createUser(user);
+
         launch(args);
     }
 }

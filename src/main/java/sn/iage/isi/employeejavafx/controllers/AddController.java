@@ -4,8 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import sn.iage.isi.employeejavafx.models.User;
+import sn.iage.isi.employeejavafx.services.UserService;
+import sn.iage.isi.employeejavafx.services.impl.UserServiceImpl;
 import sn.iage.isi.employeejavafx.tools.Utils;
 import sn.iage.isi.employeejavafx.config.DB;
+import sn.iage.isi.employeejavafx.controllers.AddController;
+
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,32 +26,36 @@ public class AddController {
 
     @FXML
     private void handleSave() {
-        String username = usernameField.getText();
-        String password = Utils.hashPassword(passwordField.getText());
+        try {
+            // Récupérer les valeurs des champs
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            if (username.isEmpty() || password.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez remplir tous les champs !");
+                alert.showAndWait();
+                return;
+            }
 
-//        if (username.isEmpty() || password.isEmpty()) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez remplir tous les champs !");
-//            alert.showAndWait();
-//            return;
-//        }
-//
-//        try (Connection conn = DBConnection.getConnection()) {
-//            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-//            PreparedStatement stmt = conn.prepareStatement(sql);
-//            stmt.setString(1, username);
-//            stmt.setString(2, password);
-//            stmt.executeUpdate();
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Utilisateur ajouté avec succès !");
-//            alert.showAndWait();
-//
-//            // Fermer la fenêtre après ajout
-//            usernameField.getScene().getWindow().hide();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de l'ajout de l'utilisateur !");
-//            alert.showAndWait();
-//        }
+            // Créer un nouvel utilisateur
+            UserService userService = new UserServiceImpl();
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+
+            // Ajouter l'utilisateur via ton service
+            userService.createUser(newUser); // Assure-toi que userService est bien instancié
+
+//            // Recharger le tableau pour afficher le nouvel utilisateur
+//            loadUsers();
+
+            // Optionnel : vider les champs après ajout
+            usernameField.clear();
+            passwordField.clear();
+            usernameField.getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }
 
