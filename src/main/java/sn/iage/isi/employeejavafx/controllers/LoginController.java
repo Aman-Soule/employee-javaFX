@@ -43,7 +43,7 @@ public class LoginController {
             try {
                 User user = userService.getUserByUsername(username);
                 if (user != null && Utils.checkPassword(password, user.getPassword())) {
-                    Outils.load(event, "Accueil", "/pages/dashboard.fxml");
+                    Outils.load(event, "Accueil", "/pages/accueil.fxml");
                     Notification.showNotification(NotificationType.SUCCESS, "Succés", "Bienvenue, " + user.getUsername());
                 } else
                     Notification.showNotification(NotificationType.ERROR, "Erreur", "Username et/ou Password incorrects");
