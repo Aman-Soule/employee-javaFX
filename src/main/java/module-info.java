@@ -6,6 +6,7 @@ module sn.iage.isi.employeejavafx {
     requires jbcrypt;
     requires static lombok;
     requires TrayNotification;
+    requires mysql.connector.j;
 
 
     opens sn.iage.isi.employeejavafx to javafx.fxml;
